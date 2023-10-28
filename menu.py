@@ -223,16 +223,16 @@ while True:
 
             escolha_energetico = int(input("\nSelecione uma opção: "))
 
-            if escolha_energetico == '1':
+            if escolha_energetico == 1:
                 leituras_em_tempo_real()
 
-            elif escolha_energetico == '2':
+            elif escolha_energetico == 2:
                 analises_eficiencia_economia()
 
-            elif escolha_energetico == '3':
+            elif escolha_energetico == 3:
                 verificar_alertas()
 
-            elif escolha_energetico == '4':
+            elif escolha_energetico == 4:
                 break
 
             else:
