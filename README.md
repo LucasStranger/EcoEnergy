@@ -22,7 +22,7 @@ while True:
         break
 
     elif escolha == 4:
-        break
+        modulo_monitoramento_energetico()
 
     elif escolha == 5:
         break
