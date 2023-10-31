@@ -1,0 +1,11 @@
+Nome,Área (m²),Eficiência (%),Leitura Atual (watts),Falha,Baixa Produção,Economia (R$)
+Painel1,11.0,20.0,2200.0,False,False,33.0
+Painel2,14.5,55.0,7975.000000000001,True,False,119.62500000000001
+Painel3,12.0,75.0,9000.0,False,True,135.0
+painel4,20.0,23.0,4600.000000000001,False,False,69.00000000000001
+Painel5,50.0,46.7,23350.0,False,False,350.25
+Painel6,40.1,32.0,12832.0,False,False,192.48000000000002
+Painel7,80.1,85.5,68485.49999999999,False,False,1027.2824999999998
+painel8,15.4,67.8,10441.199999999999,False,False,156.61799999999997
+painel9,55.4,60.8,33683.2,False,False,505.248
+painel10,4.5,6.7,301.5,False,False,4.5225

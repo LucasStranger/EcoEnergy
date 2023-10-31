@@ -1,0 +1,16 @@
+Data,Veiculo,Servico,Mecanico,Quantidade,Pecas,Tempo
+,HB20,,,,,
+2023-12-10,HB20,Troca de oleo,Vanessa,,,
+2023-12-10,HB20,Troca de oleo,,1,1,10
+,Gol,,,,,
+2023-5-20,Gol,Troca de pneus,Vanessa,,,
+2023-5-20,Gol,Troca de pneus,,1,4,40
+,Chevrolet,,,,,
+2023-1-23,Chevrolet,Troca de pecas,Amanda,,,
+2023-5-20,Chevrolet,Troca de pecas,,3,10,120
+,Jeep,,,,,
+2023-4-30,Jeep,Troca de oleo,Vanessa,,,
+2023-4-30,Jeep,Troca de oleo,,1,4,50
+,RangeRover,,,,,
+2023-6-25,RangeRover,Troca de pneus,Luiz,,,
+2023-6-25,RangeRover,Troca de pneus,,1,4,10

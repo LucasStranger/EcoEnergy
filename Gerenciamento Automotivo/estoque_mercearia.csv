@@ -1,0 +1,11 @@
+Categoria,Produto,Quantidade,Descrição
+orgânico,abacate,100,Abacate orgânico
+orgânico,maçã,150,Maçã orgânica
+orgânico,cenoura,120,Cenoura orgânica
+orgânico,banana,80,Banana orgânica
+orgânico,morango,90,Morango orgânico
+consumo_consciente,sabonete,50,Sabonete de origem sustentável
+consumo_consciente,shampoo,80,Shampoo biodegradável
+consumo_consciente,caneca,80,Caneca reutilizável
+consumo_consciente,escova de dentes,75,Escova de dentes de bambu
+consumo_consciente,saco de compras,100,Saco de compras reutilizável
