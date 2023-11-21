@@ -5,7 +5,7 @@ vendas = pd.read_csv(r'C:/Users/lucas/EcoEnergy/Gerenciamento Automotivo/estoque
 servicos = pd.read_csv(r'C:/Users/lucas/EcoEnergy/Gerenciamento Automotivo/gerenciamento_servicos.csv', encoding='ISO-8859-1')
 paineis_solares = pd.read_csv(r'C:/Users/lucas/EcoEnergy/Gerenciamento Automotivo/dados_paineis_solares.csv', encoding='utf-8')
 monitoramento = 'dados_paineis_solares.csv'
-arquivo_estoque = "estoque.csv"
+arquivo_estoque = pd.read_csv(r'C:\Users\lucas\EcoEnergy\Gerenciamento Automotivo\estoque.csv')
 estoque = {'gasolina': 1000, 'álcool': 800, 'diesel': 500, 'energia_solar': 50}
 estoque_minimo = 20
 arquivo_servicos = "gerenciamento_servicos.csv"
@@ -62,7 +62,53 @@ while True:
         estoque_df = pd.DataFrame({'produto': list(estoque.keys()), 'quantidade': list(estoque.values())})
         print("\nEstoque em formato Pandas:\n")
         print(estoque_df)
+   
+    def merge_sort(arr):
+        if len(arr) > 1:
+            mid = len(arr) // 2
+            left_half = arr[:mid]
+            right_half = arr[mid:]
 
+            merge_sort(left_half)
+            merge_sort(right_half)
+
+            i = j = k = 0
+
+            while i < len(left_half) and j < len(right_half):
+                if left_half[i][1] < right_half[j][1]:
+                    arr[k] = left_half[i]
+                    i += 1
+                else:
+                    arr[k] = right_half[j]
+                    j += 1
+                k += 1
+
+            while i < len(left_half):
+                arr[k] = left_half[i]
+                i += 1
+                k += 1
+
+            while j < len(right_half):
+                arr[k] = right_half[j]
+                j += 1
+                k += 1
+        return arr
+    def ordenar_estoque():
+    # Lendo os dados do arquivo CSV para um DataFrame
+        estoque_df = arquivo_estoque
+
+        # Transformando as linhas do DataFrame em uma lista de tuplas (produto, quantidade)
+        dados_ordenacao = [(row['produto'], row['quantidade']) for index, row in estoque_df.iterrows()]
+
+        # Chamando a função de ordenação (merge_sort)
+        dados_ordenacao_ordenados = merge_sort(dados_ordenacao)
+
+        # Mostrando o estoque ordenado
+        print("Estoque Ordenado:")
+        for produto, quantidade in dados_ordenacao_ordenados:
+            print(f"Produto: {produto}, Quantidade: {quantidade}")
+        
+        return dados_ordenacao_ordenados
     def modulo_controle_estoque():
         while True:
             print("\nMódulo de Controle de Estoque de Produtos")
@@ -70,7 +116,8 @@ while True:
             print("2 - Atualizar o estoque após uma venda ou serviço")
             print("3 - Emitir alertas de estoque mínimo")
             print("4 - Imprimir estoque em formato Pandas")
-            print("5 - Sair")
+            print("5 - Ordenação de estoque")
+            print("6 - Sair")
             
             escolha = input("Digite o número da opção desejada: ")
 
@@ -94,8 +141,9 @@ while True:
 
             elif escolha == "4":
                 imprimir_estoque_pandas()
-
             elif escolha == "5":
+                ordenar_estoque()
+            elif escolha == "6":
                 salvar_estoque()
                 break
 
@@ -221,7 +269,36 @@ while True:
         for registro in registros:
             if registro['Veículo'] == veiculo:
                 print(f'Data: {registro["Data"]}, Serviço: {registro["Serviço"]}, Quantidade: {registro["Quantidade"]}, Peças Utilizadas: {registro["Peças"]}, Tempo de Execução: {registro["Tempo"]}')
+    def merge_sort_servicos(registros):
+        if len(registros) > 1:
+            meio = len(registros) // 2
+            esquerda = registros[:meio]
+            direita = registros[meio:]
 
+            merge_sort_servicos(esquerda)
+            merge_sort_servicos(direita)
+
+            i = j = k = 0
+
+            while i < len(esquerda) and j < len(direita):
+                
+                if esquerda[i]['Data'] < direita[j]['Data']:
+                    registros[k] = esquerda[i]
+                    i += 1
+                else:
+                    registros[k] = direita[j]
+                    j += 1
+                k += 1
+
+            while i < len(esquerda):
+                registros[k] = esquerda[i]
+                i += 1
+                k += 1
+
+            while j < len(direita):
+                registros[k] = direita[j]
+                j += 1
+                k += 1
     def modulo_servicos_automotivos():
         registros = carregar_registros()
 
@@ -231,7 +308,8 @@ while True:
             print('2 - Agendamento de serviços')
             print('3 - Registro detalhado dos serviços')
             print('4 - Histórico de serviços prestados')
-            print('5 - Sair')
+            print('5 - ordenação dos serviços')
+            print('6 - Sair')
 
             escolha = input('Digite o número da opção desejada: ')
 
@@ -246,8 +324,12 @@ while True:
                 
             elif escolha == '4':
                 exibir_historico_servicos(registros)
-                
             elif escolha == '5':
+                merge_sort_servicos(registros)
+                print("\nHistórico de serviços ordenado por data:")
+                for registro in registros:
+                    print(f"Data: {registro['Data']}, Veículo: {registro['Veículo']}, Serviço: {registro['Serviço']}")
+            elif escolha == '6':
                 print('Saindo do módulo de serviços automotivos.')
                 salvar_registros(registros)
                 break
@@ -287,13 +369,44 @@ while True:
         df = pd.DataFrame(data, columns=['Categoria', 'Produto', 'Quantidade', 'Descrição'])
         print(df)
 
+    def msp(produtos):
+        if len(produtos) > 1:
+            meio = len(produtos) // 2
+            m_esq = produtos[:meio]
+            m_dir = produtos[meio:]
+
+            msp(m_esq)
+            msp(m_dir)
+
+            i, j, k = 0, 0, 0
+
+            while i < len(m_esq) and j < len(m_dir):
+                if m_esq[i]['quantidade'] > m_dir[j]['quantidade']:
+                    produtos[k] = m_esq[i]
+                    i += 1
+                else:
+                    produtos[k] = m_dir[j]
+                    j += 1
+                k += 1
+
+            while i < len(m_esq):
+                produtos[k] = m_esq[i]
+                i += 1
+                k += 1
+
+            while j < len(m_dir):
+                produtos[k] = m_dir[j]
+                j += 1
+                k += 1
+
     def exibir_menu():
         print("\nMódulo de Controle de Estoque da Mercearia")
         print("1 - Registrar a quantidade de produtos recebidos dos fornecedores")
         print("2 - Atualizar o estoque após uma venda ou serviço")
         print("3 - Emitir alertas de estoque mínimo")
         print("4 - Adicionar novo produto à mercearia")
-        print("5 - Sair")
+        print("5 - ordenação de produtos/vendas do estoque da mercearia")
+        print("6 - Sair")
 
     def registrar_recebimento():
         categoria = input("Digite a categoria do produto (orgânico/consumo_consciente): ")
@@ -577,6 +690,8 @@ while True:
             elif escolha == "4":
                 adicionar_produto()
             elif escolha == "5":
+                msp(estoque_mercearia)
+            elif escolha == "6":
                 salvar_estoque()
                 exibir_tabela()
                 break
@@ -592,4 +707,4 @@ while True:
 
     else:
         print("O programa foi encerrado.")
-        break    
+        break 
