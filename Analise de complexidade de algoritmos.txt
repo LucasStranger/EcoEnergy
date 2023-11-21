@@ -1,0 +1,40 @@
+Analise de complexidade de algoritmos
+-- Relatórios e Estatísticas--
+1. **`gerar_grafico_linhas`:** A função `gerar_grafico_linhas` é responsável por gerar um gráfico de linhas a partir de um DataFrame usando a biblioteca `matplotlib`. Essa função envolve principalmente a criação do gráfico e não realiza cálculos complexos nos dados. Sua complexidade é mais dependente do tamanho do DataFrame fornecido, já que a plotagem ocorre em relação aos dados de entrada. A complexidade dessa função está geralmente na ordem de \(O(n)\), onde \(n\) é o número de pontos de dados no DataFrame.
+
+2. **`analisar_vendas`, `analisar_desempenho_servicos`, `analisar_eficiencia_energetica_economia`:** Essas funções chamam `gerar_grafico_linhas` com diferentes conjuntos de dados, mas seu comportamento geral está ligado à chamada da função de geração de gráficos. Portanto, a complexidade dessas funções é similar à complexidade da função `gerar_grafico_linhas`, também \(O(n)\), onde \(n\) é o número de pontos de dados no DataFrame específico que está sendo plotado.
+
+Em resumo, a complexidade dos algoritmos para a geração de relatórios por meio dos gráficos é linear e depende do tamanho dos DataFrames utilizados como entrada para a geração dos gráficos de linhas. Isso significa que a complexidade aumentará conforme o número de pontos de dados nos DataFrames aumentar.
+
+--- Monitoramento energético---
+
+A função `leituras_em_tempo_real` é bastante direta, percorrendo todos os painéis solares e imprimindo as leituras atuais. A complexidade desse algoritmo é linear em relação ao número de painéis solares, sendo \(O(n)\), onde \(n\) é o número de painéis solares registrados.
+
+No entanto, a obtenção das leituras reais em tempo real pode depender de fatores externos à função, como a fonte das leituras, o hardware de monitoramento e a frequência de atualização das leituras. Se a obtenção dessas leituras envolver acesso a dispositivos externos, APIs ou outras fontes que possam ter variações de latência, a complexidade temporal pode ser influenciada por esses fatores externos.
+
+A função em si, ao percorrer e imprimir os valores, possui complexidade linear. Entretanto, o tempo real das leituras pode ser influenciado por outros elementos do sistema que estão fora do escopo dessa função.
+
+-- Gerenciamento de serviços --
+
+- **Registrar veículo (`registrar_veiculo`)**: A complexidade desse método é principalmente linear em relação ao número de veículos registrados, pois a verificação de existência de um veículo na lista é feita percorrendo todos os registros. Portanto, é \(O(n)\), onde \(n\) é o número de registros de veículos.
+
+- **Agendar serviço (`agendar_servico`)**: Novamente, essa função tem complexidade linear em relação ao número de registros, pois verifica a existência de um veículo na lista de registros. Além disso, ela interage com a lista `agendamento` e `mecanico_disponivel`. A complexidade pode ser aproximadamente \(O(n + m)\), onde \(n\) é o número de registros de veículos e \(m\) é o número de atendentes.
+
+- **Registrar detalhes do serviço (`registrar_detalhes_servico`)**: Esta função também possui complexidade linear em relação ao número de registros. Ela verifica a existência do veículo na lista, mas também verifica a disponibilidade de serviço e peças, o que pode envolver a verificação de outros dicionários (`registro` e `tempo_execucao`). Assim, a complexidade pode ser \(O(n + p + q)\), onde \(n\) é o número de registros de veículos, \(p\) é o número de tipos de serviços disponíveis e \(q\) é o número de tipos de peças ou produtos.
+
+- **Exibir histórico de serviços (`exibir_historico_servicos`)**: A complexidade desse método é linear em relação ao número total de registros, sendo \(O(n)\) onde \(n\) é o número de registros.
+
+- **Ordenação dos serviços (`merge_sort_servicos`)**: A ordenação por merge sort possui complexidade \(O(n \log n)\) no caso médio e pior caso, onde \(n\) é o número de registros.
+
+A complexidade total das operações vai depender de como os dados são gerenciados e da quantidade de registros e itens existentes em cada lista ou dicionário. Essa análise considera uma visão geral das operações, mas a implementação específica pode ter variações ou otimizações que afetem a complexidade final.
+
+-- Gerenciamento de estoque --
+os algoritmos usados para atualizar o estoque após vendas ou serviços são simples e eficientes:
+
+1. **Para atualizar o estoque após receber produtos dos fornecedores ou após uma venda:**
+   - A complexidade dessas operações é constante, \(O(1)\), porque elas envolvem apenas a atualização direta do valor associado a uma chave específica no dicionário de estoque. Não dependem do tamanho do estoque, o que os torna eficientes mesmo em grandes volumes de transações.
+
+2. **Ordenação do estoque:**
+   - A ordenação do estoque utiliza o algoritmo de merge sort para ordenar a lista de tuplas de produtos e suas quantidades. O merge sort tem uma complexidade média de \(O(n \log n)\), onde \(n\) é o número de itens no estoque. Portanto, sua eficiência é adequada mesmo para grandes volumes de itens.
+
+Os métodos de atualização do estoque são altamente eficientes, mantendo a complexidade constante, enquanto a ordenação do estoque mantém uma boa eficiência com o merge sort, mesmo para grandes volumes de dados.
